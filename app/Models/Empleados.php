@@ -55,6 +55,7 @@ class Empleados extends Authenticatable
         'domicilio_contrato',
         'evaluacion_export',
         'evaluacion_fecha',
+        'correo_fecha'
     ];
 
     /**

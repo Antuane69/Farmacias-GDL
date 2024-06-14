@@ -128,7 +128,7 @@
         <div class="main-box">
             <div class="header-section w-full">
                 <p style="text-align:center" class="title-label">
-                    Evaluación Little Tokyo
+                    Evaluación Little Tokyo de {{$solicitud}}
                 </p>
             </div>
             <div>
@@ -154,7 +154,7 @@
                             <div dir="auto" style="display:block;margin:.1em 0 .25em 0;color:#666"></div>
 
                             <select name="entry.366340186" id="m_9045310091122224635entry_366340186" aria-label="  " aria-required="true"><option value=""></option>
-                            <option value="Barra / Luis Javier">Barra / Luis Javier</option> <option value="Servicio / Ana Paula">Servicio / Ana Paula</option> <option value="Servicio / Pedro">Servicio / Pedro</option> <option value="Wash / Adalberto Navarro">Wash / Adalberto Navarro</option> <option value="Cocina / Jorge Barto">Cocina / Jorge Barto</option> <option value="Servicio/ Daniel Romero">Servicio/ Daniel Romero</option> <option value="Servicio/ Juan Carlos">Servicio/ Juan Carlos</option> <option value="Servicio/">Servicio/</option> <option value="Servicio/Roberto Rodriguez">Servicio/Roberto Rodriguez</option> <option value="Producción/ Alex">Producción/ Alex</option> <option value="Producción/Juan">Producción/Juan</option> <option value="Cocina/ Roberto">Cocina/ Roberto</option> <option value="Cocina/Leonardo">Cocina/Leonardo</option> <option value="Cocina/ Rene">Cocina/ Rene</option> <option value="Cocina/ Nayelli">Cocina/ Nayelli</option> <option value="Barra / Hanna">Barra / Hanna</option> <option value="Cocina / Ruben">Cocina / Ruben</option> <option value="cocina/ Manuel">cocina/ Manuel</option> <option value="Opción 19">Opción 19</option></select>
+                            <option value="{{$solicitud}}" selected>{{$solicitud}}</option></select>
                             </div></div></div>
                             <input type="hidden" name="partialResponse" value="[null,null,&quot;-1097819217520286780&quot;]">
                             <input type="hidden" name="pageHistory" value="0">

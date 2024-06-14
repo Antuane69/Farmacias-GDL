@@ -124,11 +124,76 @@ class TokyoCorreos extends Mailable
             $vista = 'correo.empleadosCorreo';
 
         }elseif($this->tipo == 'Evaluacion'){            
-            $titulo = 'ACTITUDES BÁSICO';
-            $solicitud = "";
+            $empleado = Empleados::find($this->id);
+            $titulo = 'ACTITUDES BÁSICO de ' . $empleado->nombre;
+
+            $opciones = ["Luis Javier","Ana Paula","Pedro","Adalberto Navarro","Jorge Barto","Daniel Romero","Juan Carlos","Roberto Rodriguez","Alex","Juan","Roberto","Leonardo","Rene","Nayelli","Hanna","Ruben","Manuel","Opcion 19"];
+            $nombreCompleto = $empleado->nombre;
+            $aux = "Opcion 19";
+            
+            foreach ($opciones as $opcion) {
+                if (str_contains($nombreCompleto, $opcion)) {
+                    $aux = $opcion;
+                    break;
+                }
+            }
+
+            if($aux == "Luis Javier"){
+                $solicitud = 'Barra / Luis Javier';
+            }
+            elseif($aux == "Ana Paula"){
+                $solicitud = "Servicio / Ana Paula";
+            }
+            elseif($aux == "Pedro"){
+                $solicitud = "Servicio / Pedro";
+            }
+            elseif($aux == "Adalberto Navarro"){
+                $solicitud = "Wash / Adalberto Navarro";    
+            }
+            elseif($aux == "Jorge Barto"){
+                $solicitud = "Cocina / Jorge Barto";    
+            }
+            elseif($aux == "Daniel Romero"){
+                $solicitud = "Servicio/ Daniel Romero";    
+            }
+            elseif($aux == "Juan Carlos"){
+                $solicitud = "Servicio/ Juan Carlos";    
+            }
+            elseif($aux == "Roberto Rodriguez"){
+                $solicitud = "Servicio/Roberto Rodriguez";
+            }
+            elseif($aux == "Alex"){
+                $solicitud = "Producción/ Alex";
+            }
+            elseif($aux == "Juan"){
+                $solicitud = "Producción/Juan"; 
+            }
+            elseif($aux == "Roberto"){
+                $solicitud = "Cocina/ Roberto"; 
+            }
+            elseif($aux == "Leonardo"){
+                $solicitud = "Cocina/Leonardo"; 
+            }
+            elseif($aux == "Rene"){
+                $solicitud = "Cocina/ Rene"; 
+            }
+            elseif($aux == "Nayelli"){
+                $solicitud = "Cocina/ Nayelli"; 
+            }
+            elseif($aux == "Hanna"){
+                $solicitud = "Barra / Hanna"; 
+            }
+            elseif($aux == "Ruben"){
+                $solicitud = "Cocina / Ruben"; 
+            }
+            elseif($aux == "Manuel"){
+                $solicitud = "cocina/ Manuel"; 
+            }
+            else{
+                $solicitud = "Opción 19";
+            }
 
             if($this->aux == 'Evaluacion 3'){
-                $empleado = Empleados::find($this->id);
                 $empleado->evaluacion_export = true;
                 $empleado->evaluacion_fecha = Carbon::now();
                 $empleado->save();

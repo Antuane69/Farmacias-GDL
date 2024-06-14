@@ -80,10 +80,13 @@ class NominaController extends Controller
             $fecha_final = Carbon::createFromFormat('Y-m-d H:i:s', $nomina->created_at);
             $fecha_actual = $fecha_final->copy()->subDays(15);
 
-            $empleado_ob = Empleados::where('nombre', 'LIKE' , $nomina->empleado->nombre . '%')->first();
+            if (isset($nomina->empleado)) {
+                $empleado_ob = Empleados::where('nombre', 'LIKE' , $nomina->empleado->nombre . '%')->first();
+            } else {
+                $empleado_ob = false;
+            }
 
             if($empleado_ob){
-                // Formatear las fechas para la consulta
                 $fecha_inicio_format = $fecha_actual->toDateTimeString();
                 $fecha_final_format = $fecha_final->toDateTimeString();
 

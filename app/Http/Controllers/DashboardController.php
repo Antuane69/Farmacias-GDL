@@ -40,29 +40,41 @@ class DashboardController extends Controller
             $dias4 = $diferencia4->d;
 
             if($anios == 0 && $meses == 0 && $dias < 5){
-                $aux = 'Segundo Contrato';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
-                $tipo = 'Evaluacion';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
-            }elseif($anios2 == 0 && $meses2 == 0 && $dias2 < 5){
-                $aux = 'Tercer Contrato';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
-                $tipo = 'Evaluacion';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
-            }elseif($anios3 == 0 && $meses3 == 0 && $dias3 < 5){
-                $aux = 'Contrato Indefinido';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
-                $tipo = 'Evaluacion';
-                $aux = 'Evaluacion 3';
-                if($empleado->evaluacion_export != true){
+                if($empleado->correo_fecha != $fecha_actual->format('Y-m-d')){
+                    $aux = 'Segundo Contrato';
                     Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $tipo = 'Evaluacion';
+                    Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $empleado->correo_fecha = $fecha_actual->format('Y-m-d');
+                }
+            }elseif($anios2 == 0 && $meses2 == 0 && $dias2 < 5){
+                if($empleado->correo_fecha != $fecha_actual->format('Y-m-d')){
+                    $aux = 'Tercer Contrato';
+                    Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $tipo = 'Evaluacion';
+                    Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $empleado->correo_fecha = $fecha_actual->format('Y-m-d');
+                }
+            }elseif($anios3 == 0 && $meses3 == 0 && $dias3 < 5){
+                if($empleado->correo_fecha != $fecha_actual->format('Y-m-d')){
+                    $aux = 'Contrato Indefinido';
+                    Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $tipo = 'Evaluacion';
+                    $aux = 'Evaluacion 3';
+                    if($empleado->evaluacion_export != true){
+                        Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    }
+                    $empleado->correo_fecha = $fecha_actual->format('Y-m-d');
                 }
             }
 
-            if($anios4 == 0 && $meses4 == 3 && $dias4 == 0){
-                $tipo = 'Evaluacion';
-                $aux = 'Evaluacion 3';
-                Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+            if($anios4 == 0 && $meses4 == 2 && $dias4 == 25){
+                if($empleado->correo_fecha != $fecha_actual->format('Y-m-d')){
+                    $tipo = 'Evaluacion';
+                    $aux = 'Evaluacion 3';
+                    Mail::to('antuanealex49@gmail.com')->send(new TokyoCorreos($tipo,$empleado->id,$aux));
+                    $empleado->correo_fecha = $fecha_actual->format('Y-m-d');
+                }
             }
 
             $tipo = 'Contrato';
