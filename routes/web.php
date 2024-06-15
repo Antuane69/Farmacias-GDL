@@ -176,6 +176,7 @@ Route::middleware(['users.redirect'])->group( function () {
     Route::get('/gestion/editarVacaciones/{id}',[VacacionesController::class, 'edit_show'])->name('editarVacacion.show');
     Route::post('/gestion/editarVacacionesVista/{id}',[VacacionesController::class, 'edit_store'])->name('editarVacacion.store');
     Route::delete('/gestion/eliminarVacaciones/{id}', [VacacionesController::class, 'eliminar'])->name('eliminarVacacion');
+    Route::get('/gestion/vacacionesCheck',[VacacionesController::class, 'vacacionesCheck'])->name('vacacion.check');
 
     Route::get('/gestion/mostrarPermisos',[PermisosController::class, 'show'])->name('mostrarPermisos.show');
     Route::get('/gestion/registrarPermisos',[PermisosController::class, 'create'])->name('crearPermisos.create');

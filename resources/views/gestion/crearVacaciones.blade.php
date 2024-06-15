@@ -132,9 +132,12 @@
                     <div class='flex items-center justify-center  md:gap-8 gap-4 pt-1 pb-5'>
                         <a href="{{ route('empleadosInicio.show') }}"
                             class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancelar</a>
-                        <button type="submit"
-                            class='w-auto bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-xl font-bold text-black px-4 py-2'
+                        <button type="submit" id="enviar-button"
+                            hidden class='w-auto bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-xl font-bold text-black px-4 py-2'
                             >Registrar Vacaciones</button>
+                        <p id="message-id" class="text-red-800 font-bold mt-1" hidden>
+                            Dias asignados a otro trabajador de su área, intente otra fecha.
+                        </p>   
                     </div>
                 </form>
             </div>
@@ -178,7 +181,6 @@
                 fetch(`${SITEURL}/gestion/registrarVacaciones/buscar?nombre=${nombre}`, { method: 'get' })
                     .then(response => response.json())
                     .then(data => {
-                        console.log(data.empleado.curp);
                         document.getElementById("curp-input").value = data.empleado.curp;
                         document.getElementById("fechaingreso-input").value = data.empleado.fecha_ingreso;
                         document.getElementById("dias-input").value = data.empleado.dias_vacaciones;
@@ -197,9 +199,7 @@
             }
         }
     });
-</script>
 
-<script>
     //Obtener el día actual. 
     $(document).ready(function() {
         var date = new Date();
@@ -224,15 +224,12 @@
     $("#fechaA").datepicker({
         dateFormat: 'dd-mm-yy'
     });
-</script>
 
-<script>
     function validarFecha() {
         var fechaInput = new Date(document.getElementById("fechaA").value);
         var fechaRegreso = new Date(document.getElementById("fechaB").value);
 
         var fechaActual = new Date();
-
         var diasT = document.getElementById('dias-input').value;
 
         // Obtener la fecha límite permitida
@@ -248,6 +245,7 @@
         }else{
             var diasTomados = Math.ceil((fechaRegreso - fechaInput) / (1000 * 60 * 60 * 24));
             document.getElementById('dias').value = diasTomados;
+            vacacionesCheck();
         }
     }
 
@@ -258,6 +256,31 @@
         var diasTomados = Math.ceil((fechaRegreso - fechaInput) / (1000 * 60 * 60 * 24));
         document.getElementById('dias').value = diasTomados;
 
+        vacacionesCheck();
+    }
+
+    function vacacionesCheck(){
+        const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+        var SITEURL = "{{ url('/') }}";
+
+        var curp = document.getElementById('curp-input').value;
+        var inicio = document.getElementById('fechaA').value;
+        var regreso = document.getElementById('fechaB').value;
+
+        fetch(SITEURL+ `/gestion/vacacionesCheck?curp=${curp}&inicio=${inicio}&regreso=${regreso}`, { method: 'get' })
+            .then(response => response.json())
+            .then(data => {
+                if(data.enviar == true){
+                    document.getElementById('enviar-button').hidden = false;
+                    document.getElementById('message-id').hidden = true;
+                }else{
+                    document.getElementById('enviar-button').hidden = true;
+                    document.getElementById('message-id').hidden = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 </script>
 

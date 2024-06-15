@@ -215,4 +215,36 @@ class VacacionesController extends Controller
         }
 
     }
+
+    public function vacacionesCheck(Request $request){
+
+        $enviar = true;
+        $curp = $request->curp;
+
+        $fecha_inicio = Carbon::createFromFormat('Y-m-d', $request->inicio);
+        $fecha_regreso = Carbon::createFromFormat('Y-m-d', $request->regreso);
+        $empleado = Empleados::where('curp', $curp)->first();
+        $puesto_empleado = $empleado->puesto;
+
+        $vacaciones = Vacaciones::where(function ($query) use ($fecha_inicio, $fecha_regreso) {
+            $query->whereBetween('fecha_inicioVac', [$fecha_inicio, $fecha_regreso])
+                  ->orWhereBetween('fecha_regresoVac', [$fecha_inicio, $fecha_regreso])
+                  ->orWhere(function ($query) use ($fecha_inicio, $fecha_regreso) {
+                      $query->where('fecha_inicioVac', '<=', $fecha_inicio)
+                            ->where('fecha_regresoVac', '>=', $fecha_regreso);
+                  });
+        })->get();
+
+        foreach ($vacaciones as $vacacion) {
+            $empleado_vacacion = Empleados::where('curp', $vacacion->curp)->first();
+            if ($empleado_vacacion && ($puesto_empleado == $empleado_vacacion->puesto)) {
+                $enviar = false;
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'enviar' => $enviar
+        ]);
+    }
 }
