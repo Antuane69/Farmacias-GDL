@@ -537,12 +537,18 @@
                                 </button>
                                 <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                             transition duration-150 ease-in-out origin-top min-w-32">
-                                    {{-- <a>
-                                        <li class="px-3 py-1 hover:bg-gray-100">Inicio</li>
-                                    </a> --}}
-                                    <a href="{{ route('template.crear') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Crear Registro de Horario</li>
+                                    <a href="{{ route('template.crear','Cocina') }}">
+                                        @if (auth()->user()->hasRole('admin'))
+                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario de Cocina</li>
+                                        @else
+                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario</li>
+                                        @endif
                                     </a>
+                                    @if (auth()->user()->hasRole('admin'))                                        
+                                        <a href="{{ route('template.crear','Servicio') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario de Servicio</li>
+                                        </a>
+                                    @endif
                                     <a href="{{ route('horario.mostrar') }}">
                                         <li class="px-3 py-1 hover:bg-gray-100">Ver Registro de Horario</li>
                                     </a>

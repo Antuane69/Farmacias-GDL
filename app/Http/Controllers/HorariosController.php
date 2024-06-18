@@ -249,12 +249,14 @@ class HorariosController extends Controller
         }
     }
 
-    public function createTemplate()
+    public function createTemplate($tipo)
     {
-        return redirect()->route('template.store');
+        return redirect()->route('template.store',[
+            'tipo' => $tipo
+        ]);
     }
 
-    public function storeTemplate()
+    public function storeTemplate($tipo)
     {
         $puesto = auth()->user()->puesto;
 
@@ -262,7 +264,7 @@ class HorariosController extends Controller
         $fechaActual = $auxf->format('Y/m/d');
 
         $nombres_a = Empleados::all();
-        $vacaciones = Vacaciones::where('fecha_regresoVac','>',$fechaActual)->with('empleado')->get();
+        $vacaciones = Vacaciones::where('fecha_regresoVac','>',$fechaActual)->where('fecha_inicioVac', '<=', $fechaActual)->with('empleado')->get();
         $arrayVacaciones = $vacaciones->pluck('empleado.nombre')->toArray();
 
         // Filtrar los nombres de los empleados que no están de vacaciones
@@ -270,7 +272,7 @@ class HorariosController extends Controller
             return !in_array($empleado->nombre, $arrayVacaciones);
         });
 
-        if($puesto == 'COCINERO' || $puesto == 'PRODUCCION' || $puesto == 'WASH' || $puesto == 'Administracion'){
+        if($puesto == 'COCINERO' || $puesto == 'PRODUCCION' || $puesto == 'WASH' || $tipo == 'Cocina'){
             $horario = Horarios::orderBy('created_at', 'desc')->first();
             
             $nombres_coc = $nombres->where('puesto','COCINERO')->pluck('nombre')->toArray();
@@ -450,7 +452,7 @@ class HorariosController extends Controller
                             'sabado' => 0,
                             'domingo' => 1 
                         );
-                    }elseif($contadorCocina == 9){
+                    }elseif($contadorCocina >= 9){
             
                         $arregloCocina[] = array(
                             'lunes' => 3,
@@ -720,7 +722,7 @@ class HorariosController extends Controller
                         'sabado' => 0,
                         'domingo' => 1 
                     );
-                }elseif($contadorCocina == 9){
+                }elseif($contadorCocina >= 9){
 
                     $arregloCocina[] = array(
                         'lunes' => 3,
@@ -994,7 +996,7 @@ class HorariosController extends Controller
                             'domingo' => 1 
                         );
 
-                    }elseif($contadorServicio == 9){
+                    }elseif($contadorServicio >= 9){
             
                         $arregloServicio[] = array(
                             'lunes' => 3,
@@ -1263,7 +1265,7 @@ class HorariosController extends Controller
                         'domingo' => 1 
                     );
 
-                }elseif($contadorServicio == 9){
+                }elseif($contadorServicio >= 9){
 
                     $arregloServicio[] = array(
                         'lunes' => 3,

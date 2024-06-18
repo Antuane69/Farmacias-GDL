@@ -35,7 +35,7 @@
     <div class="py-10">
         <div class="mb-10 py-3 ml-16 leading-normal text-green-500 rounded-lg" role="alert">
             <div class="text-left">
-                <a href="{{ route('template.crear') }}"
+                <a href="{{ route('dashboard') }}"
                 class='w-auto rounded-lg shadow-xl font-medium text-black px-4 py-2'
                 style="background:#FFFF7B;text-decoration: none;" onmouseover="this.style.backgroundColor='#FFFF3E'" onmouseout="this.style.backgroundColor='#FFFF7B'">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-flex" viewBox="0 0 20 20"
@@ -231,8 +231,6 @@
                 $('#data-table').dataTable();
             });
 
-            // $(document).ready(function() {
-            // });
         </script>
     @endsection
 </x-horarios>

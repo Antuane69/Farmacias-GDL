@@ -71,20 +71,20 @@
             </tr>
         </table>
         <p></p>
-        <table style="margin-left:auto;margin-top:10px; margin-right:auto;width:730px;border-collapse:collapse;">
+        <table style="margin-left:auto;margin-top:10px; margin-right:auto;width:920px;border-collapse:collapse;">
             <tr style="border: 1px solid #262626;border-bottom: 1px solid #262626;background-color: #A2E4FF;">
-                <th style="width: 30%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">HORAS COMPLETAS TRABAJADAS</th>
-                <th style="width: 18%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">MINUTOS RESTANTES TRABAJADOS</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">DIAS LABORADOS</th>
-                <th style="width: 18%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">SUELDO POR HORA</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">SALARIO DIARIO</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">BONOS</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">PRIMA DOMINICAL</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">PRIMA VACACIONAL</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">DIAS EXTRA</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">IMSS</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">ISR</th>
-                <th style="width: 17%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">TOTAL</th>
+                <th style="width: 15%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">HORAS COMPLETAS TRABAJADAS</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">MINUTOS RESTANTES TRABAJADOS</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">DIAS LABORADOS</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">SUELDO POR HORA</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">SALARIO DIARIO</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">BONOS</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">PRIMA DOMINICAL</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">PRIMA VACACIONAL</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">DIAS EXTRA</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">IMSS</th>
+                <th style="width: 6%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626">ISR</th>
+                <th style="width: 20%; font-size:10;border: 1px solid #262626;border-bottom: 1px solid #262626;border: 1px solid #262626">TOTAL</th>
             </tr>
             <tr style="text-align:center;font-size:13px;border: 1px solid #262626;">   
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">{{$nomina->horas}}</td>

@@ -188,8 +188,8 @@ Route::middleware(['users.redirect'])->group( function () {
 
     Route::get('/horario/verHorario', [HorariosController::class,'show'])->name('horario.mostrar');
     Route::post('/horario/crearHorario/guardar/{area}', [HorariosController::class,'store'])->name('horario.store');
-    Route::get('/horario/crearTemplate', [HorariosController::class,'createTemplate'])->name('template.crear');
-    Route::get('/horario/llenarTemplate', [HorariosController::class,'storeTemplate'])->name('template.store');
+    Route::get('/horario/crearTemplate/{tipo}', [HorariosController::class,'createTemplate'])->name('template.crear');
+    Route::get('/horario/llenarTemplate/{tipo}', [HorariosController::class,'storeTemplate'])->name('template.store');
     Route::post('/horario/filtroHorarios', [HorariosController::class,'filtro'])->name('horario.filtro');
     
     Route::get('/cambiarContraseña', [ChangePasswordController::class,'cambiar_contraseña'])->name('cambiar_contraseña');
