@@ -371,7 +371,7 @@ class NominaController extends Controller
             'fecha_final' => $fechaFormateada2,
             'salario_d' => $salario,
             'salario_h' => $salario_h,
-            ])->setPaper('letter', 'portrait');
+            ])->setPaper('letter', 'landscape');
 
         // Nombre del archivo PDF
         $nombreArchivo = 'Nomina_' . $nomina->nombre_real . '.pdf';
@@ -379,46 +379,6 @@ class NominaController extends Controller
         // Devolver la respuesta con el archivo adjunto
         return $pdf->stream($nombreArchivo); 
     }
-
-    //pruebas
-    
-    // // Convertir a objetos DateTime
-    // $valor = $valor2;
-    // $if_val = substr($valor, 0, 2);
-
-    // // Eliminar los primeros 5 caracteres
-    // $d = substr($d, 5);
-
-    // // Calcular la diferencia
-    // $diferencia = $datetime1->diff($datetime2);
-
-    // // Formatear la diferencia
-    // $horas = $diferencia->h;
-    // $minutos = $diferencia->i;
-
-    // $arrHoras[] = $horas;
-    // $arrMinutos[] = $minutos;
-    
-    // if($d == ''){
-    //     break;
-    // }
-    // dd($array);
-    // // Sumar los elementos del array
-    // $total_Horas = array_sum($arrHoras);
-    // $total_Minutos = array_sum($arrMinutos);
-
-    // $minutosExtra = ($total_Minutos/60) * (260 / 6);
-    // $nomina_f = (260.00 * 15) + 58.33 + 0 + 0 + 0 + 0 + 0 + 0 + 59.81 + $minutosExtra;
-    // // Formatear la variable para mostrar solo 3 decimales
-    // $nomina = number_format($nomina_f, 2);
-
-    // dd($total_Horas,$total_Minutos);
-
-    // dd($nomina);
-    // // Insertar los datos en la base de datos
-    // foreach ($data as $row) {
-    //     DB::table('your_table')->insert($row);
-    // }
 
     private function readExcel($file, $sheetName)
     {

@@ -450,9 +450,8 @@ class HorariosController extends Controller
                             'sabado' => 0,
                             'domingo' => 1 
                         );
+                    }elseif($contadorCocina == 9){
             
-                    }else{
-                        
                         $arregloCocina[] = array(
                             'lunes' => 3,
                             'martes' => 3,
@@ -460,7 +459,7 @@ class HorariosController extends Controller
                             'jueves' => 4,
                             'viernes' => 4,
                             'sabado' => 4,
-                            'domingo' => 8 
+                            'domingo' =>8 
                         );
                         
                         $arregloCocina[] = array(
@@ -479,7 +478,49 @@ class HorariosController extends Controller
                             'miercoles' => 3,
                             'jueves' => 3,
                             'viernes' => 4,
+                            'sabado' => 3,
+                            'domingo' => 8 
+                        );
+            
+                        $arregloCocina[] = array(
+                            'lunes' => 2,
+                            'martes' => 2,
+                            'miercoles' => 2,
+                            'jueves' => 2,
+                            'viernes' => 0,
+                            'sabado' => 0,
+                            'domingo' => 1 
+                        );
+            
+                    }else{
+                        
+                        $arregloCocina[] = array(
+                            'lunes' => 3,
+                            'martes' => 3,
+                            'miercoles' => 3,
+                            'jueves' => 4,
+                            'viernes' => 4,
                             'sabado' => 4,
+                            'domingo' =>8 
+                        );
+                        
+                        $arregloCocina[] = array(
+                            'lunes' => 1,
+                            'martes' => 1,
+                            'miercoles' => 1,
+                            'jueves' => 1,
+                            'viernes' => 1,
+                            'sabado' => 1,
+                            'domingo' => 8
+                        );
+            
+                        $arregloCocina[] = array(
+                            'lunes' => 3,
+                            'martes' => 3,
+                            'miercoles' => 3,
+                            'jueves' => 3,
+                            'viernes' => 4,
+                            'sabado' => 3,
                             'domingo' => 8 
                         );
             
@@ -679,9 +720,8 @@ class HorariosController extends Controller
                         'sabado' => 0,
                         'domingo' => 1 
                     );
+                }elseif($contadorCocina == 9){
 
-                }else{
-                    
                     $arregloCocina[] = array(
                         'lunes' => 3,
                         'martes' => 3,
@@ -689,7 +729,7 @@ class HorariosController extends Controller
                         'jueves' => 4,
                         'viernes' => 4,
                         'sabado' => 4,
-                        'domingo' => 8 
+                        'domingo' =>8 
                     );
                     
                     $arregloCocina[] = array(
@@ -701,17 +741,59 @@ class HorariosController extends Controller
                         'sabado' => 1,
                         'domingo' => 8
                     );
-
+        
                     $arregloCocina[] = array(
                         'lunes' => 3,
                         'martes' => 3,
                         'miercoles' => 3,
                         'jueves' => 3,
                         'viernes' => 4,
-                        'sabado' => 4,
+                        'sabado' => 3,
                         'domingo' => 8 
                     );
+        
+                    $arregloCocina[] = array(
+                        'lunes' => 2,
+                        'martes' => 2,
+                        'miercoles' => 2,
+                        'jueves' => 2,
+                        'viernes' => 0,
+                        'sabado' => 0,
+                        'domingo' => 1 
+                    );
 
+                }else{
+                    
+                    $arregloCocina[] = array(
+                        'lunes' => 3,
+                        'martes' => 3,
+                        'miercoles' => 3,
+                        'jueves' => 4,
+                        'viernes' => 4,
+                        'sabado' => 4,
+                        'domingo' =>8 
+                    );
+                    
+                    $arregloCocina[] = array(
+                        'lunes' => 1,
+                        'martes' => 1,
+                        'miercoles' => 1,
+                        'jueves' => 1,
+                        'viernes' => 1,
+                        'sabado' => 1,
+                        'domingo' => 8
+                    );
+        
+                    $arregloCocina[] = array(
+                        'lunes' => 3,
+                        'martes' => 3,
+                        'miercoles' => 3,
+                        'jueves' => 3,
+                        'viernes' => 4,
+                        'sabado' => 3,
+                        'domingo' => 8 
+                    );
+        
                     $arregloCocina[] = array(
                         'lunes' => 2,
                         'martes' => 2,
@@ -911,8 +993,8 @@ class HorariosController extends Controller
                             'sabado' => 0,
                             'domingo' => 1 
                         );
-            
-                    }else{
+
+                    }elseif($contadorServicio == 9){
             
                         $arregloServicio[] = array(
                             'lunes' => 3,
@@ -921,7 +1003,7 @@ class HorariosController extends Controller
                             'jueves' => 4,
                             'viernes' => 4,
                             'sabado' => 4,
-                            'domingo' => 8 
+                            'domingo' =>8 
                         );
                         
                         $arregloServicio[] = array(
@@ -940,7 +1022,49 @@ class HorariosController extends Controller
                             'miercoles' => 3,
                             'jueves' => 3,
                             'viernes' => 4,
+                            'sabado' => 3,
+                            'domingo' => 8 
+                        );
+            
+                        $arregloServicio[] = array(
+                            'lunes' => 2,
+                            'martes' => 2,
+                            'miercoles' => 2,
+                            'jueves' => 2,
+                            'viernes' => 0,
+                            'sabado' => 0,
+                            'domingo' => 1 
+                        );
+            
+                    }else{
+            
+                        $arregloServicio[] = array(
+                            'lunes' => 3,
+                            'martes' => 3,
+                            'miercoles' => 3,
+                            'jueves' => 4,
+                            'viernes' => 4,
                             'sabado' => 4,
+                            'domingo' =>8 
+                        );
+                        
+                        $arregloServicio[] = array(
+                            'lunes' => 1,
+                            'martes' => 1,
+                            'miercoles' => 1,
+                            'jueves' => 1,
+                            'viernes' => 1,
+                            'sabado' => 1,
+                            'domingo' => 8
+                        );
+            
+                        $arregloServicio[] = array(
+                            'lunes' => 3,
+                            'martes' => 3,
+                            'miercoles' => 3,
+                            'jueves' => 3,
+                            'viernes' => 4,
+                            'sabado' => 3,
                             'domingo' => 8 
                         );
             
@@ -1139,7 +1263,7 @@ class HorariosController extends Controller
                         'domingo' => 1 
                     );
 
-                }else{
+                }elseif($contadorServicio == 9){
 
                     $arregloServicio[] = array(
                         'lunes' => 3,
@@ -1148,7 +1272,7 @@ class HorariosController extends Controller
                         'jueves' => 4,
                         'viernes' => 4,
                         'sabado' => 4,
-                        'domingo' => 8 
+                        'domingo' =>8 
                     );
                     
                     $arregloServicio[] = array(
@@ -1160,17 +1284,59 @@ class HorariosController extends Controller
                         'sabado' => 1,
                         'domingo' => 8
                     );
-
+        
                     $arregloServicio[] = array(
                         'lunes' => 3,
                         'martes' => 3,
                         'miercoles' => 3,
                         'jueves' => 3,
                         'viernes' => 4,
-                        'sabado' => 4,
+                        'sabado' => 3,
                         'domingo' => 8 
                     );
+        
+                    $arregloServicio[] = array(
+                        'lunes' => 2,
+                        'martes' => 2,
+                        'miercoles' => 2,
+                        'jueves' => 2,
+                        'viernes' => 0,
+                        'sabado' => 0,
+                        'domingo' => 1 
+                    );
 
+                }else{
+
+                    $arregloServicio[] = array(
+                        'lunes' => 3,
+                        'martes' => 3,
+                        'miercoles' => 3,
+                        'jueves' => 4,
+                        'viernes' => 4,
+                        'sabado' => 4,
+                        'domingo' =>8 
+                    );
+                    
+                    $arregloServicio[] = array(
+                        'lunes' => 1,
+                        'martes' => 1,
+                        'miercoles' => 1,
+                        'jueves' => 1,
+                        'viernes' => 1,
+                        'sabado' => 1,
+                        'domingo' => 8
+                    );
+        
+                    $arregloServicio[] = array(
+                        'lunes' => 3,
+                        'martes' => 3,
+                        'miercoles' => 3,
+                        'jueves' => 3,
+                        'viernes' => 4,
+                        'sabado' => 3,
+                        'domingo' => 8 
+                    );
+        
                     $arregloServicio[] = array(
                         'lunes' => 2,
                         'martes' => 2,
