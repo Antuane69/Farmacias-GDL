@@ -17,6 +17,14 @@ class PermisosController extends Controller
 
         if(auth()->user()->hasRole('admin')){
             $permisos = Permisos::where('estado','!=','Pendiente')->orderBy('created_at', 'desc')->with('empleado')->get();
+        }elseif(auth()->user()->hasRole('coordinador')){
+            $puesto = auth()->user()->puesto;
+            $permisos = Permisos::whereHas('empleado', function ($query) use ($puesto) {
+                $query->where('puesto', $puesto);
+            })
+            ->orderBy('created_at', 'desc')
+            ->with('empleado')
+            ->get();
         }else{
             $permisos = Permisos::where('curp',auth()->user()->curp)->orderBy('created_at', 'desc')->with('empleado')->get();
         }
@@ -71,6 +79,9 @@ class PermisosController extends Controller
     {
         if(auth()->user()->hasRole('admin')){
             $nombres = Empleados::all();
+        }elseif(auth()->user()->hasRole('coordinador')){
+            $puesto = auth()->user()->puesto;
+            $nombres = Empleados::where('puesto',$puesto)->where('curp', '!=', auth()->user()->curp)->get();
         }else{
             $nombres = Empleados::where('puesto',auth()->user()->puesto)->get();
         }

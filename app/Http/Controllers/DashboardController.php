@@ -210,4 +210,21 @@ class DashboardController extends Controller
             'historial' => $historial
         ]);
     }
+
+    public function foto_perfil(Request $request){
+
+        $ruta = public_path() . '/img/gestion/Empleados';
+
+        if ($request->hasFile('imagen_perfil')) {
+            $perfil = $request->file('imagen_perfil');
+            $nombreImagen =  "PP_" . $request->nombre  . "." . $perfil->getClientOriginalExtension();
+            $perfil->move($ruta,$nombreImagen);
+        }
+
+        $empleado = Empleados::where('curp',auth()->user()->curp)->first();
+        $empleado->imagen_perfil = $nombreImagen;
+        $empleado->save();
+
+        return redirect()->back();
+    }
 }

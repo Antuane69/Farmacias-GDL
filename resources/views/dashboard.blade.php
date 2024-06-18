@@ -17,6 +17,9 @@
 <x-app2>
 
     @section('title', 'Little-Tokyo Administración')
+    @section('css')
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta3/css/bootstrap.min.css" rel="stylesheet">
+    @endsection
 
     <body>
         <!-- ======= Hero Section ======= -->
@@ -130,10 +133,81 @@
                 </div>
                 </div>
             </section><!-- End Featured Services Section -->
-
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width: 300px; height: 500px;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
+                            <button type="button" class="rounded bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-1 p-1" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{{ route('foto_perfil') }}" enctype="multipart/form-data">
+                                @csrf
+                                <div class="text-center">
+                                    <div class="mb-4" onclick="openInput()" id="imageContainer1">
+                                        <label for="imagen_perfil" class="mb-2 uppercase text-gray-800 font-bold text-center">
+                                            Imagen del Empleado
+                                        </label>
+                                        <div class="mx-auto border-yellow-200 p-2 w-full rounded-lg border-2" style="width: 200px; height: 220px;">
+                                            <img id="imgPreview1" src="{{ asset('img/gestion/Empleados/noImage.jpg') }}" style="width: 180px; height: 200px;">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="file" name="imagen_perfil" id="inputContainer1" class="bg-white border-black p-2 rounded-lg border-2 w-full" accept=".jpg, .jpeg, .png, .svg" onchange="previewImage(event, '#imgPreview1')" style="max-width: 100%; border-color: #858585; background-color: #FFFFFF;">
+                                    </div>
+                                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-bold py-2 px-4 rounded-md">Enviar PDF</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
             <!-- ======= Contact Section ======= -->
             <div id="preloader"></div>
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
                     class="bi bi-arrow-up-short"></i></a>
     </body>
 </x-app2>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta3/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setupImageContainer('imageContainer1','inputContainer1');
+    });
+
+    function setupImageContainer(containerId,inputID) {
+        var imageContainer = document.getElementById(containerId);
+        var fileInput = document.getElementById(inputID);
+
+        imageContainer.addEventListener('click', function () {
+            fileInput.click(); // Simula un clic en el input de tipo file
+        });
+    }
+
+    function previewImage(event, querySelector){
+
+        //Recuperamos el input que desencadeno la acción
+        const input = event.target;
+
+        //Recuperamos la etiqueta img donde cargaremos la imagen
+        $imgPreview = document.querySelector(querySelector);
+
+        // Verificamos si existe una imagen seleccionada
+        if(!input.files.length) return
+
+        //Recuperamos el archivo subido
+        file = input.files[0];
+
+        //Creamos la url
+        objectURL = URL.createObjectURL(file);
+
+        //Modificamos el atributo src de la etiqueta img
+        $imgPreview.src = objectURL;
+                
+    }
+</script>

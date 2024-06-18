@@ -267,6 +267,14 @@ class HorariosController extends Controller
         $vacaciones = Vacaciones::where('fecha_regresoVac','>',$fechaActual)->where('fecha_inicioVac', '<=', $fechaActual)->with('empleado')->get();
         $arrayVacaciones = $vacaciones->pluck('empleado.nombre')->toArray();
 
+        if($puesto != 'administracion'){
+            if($puesto == 'COCINERO' || $puesto == 'PRODUCCION'){
+                $tipo = 'Cocina';
+            }else{
+                $tipo = 'Servicio';
+            }
+        }
+
         // Filtrar los nombres de los empleados que no están de vacaciones
         $nombres = $nombres_a->filter(function ($empleado) use ($arrayVacaciones) {
             return !in_array($empleado->nombre, $arrayVacaciones);

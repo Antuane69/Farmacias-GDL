@@ -59,7 +59,7 @@
                             @if ($empleado->imagen_perfil)                            
                                 <div class="w-2/5 mb-5 md:mb-0 ml-20 mt-7" style="width: 220px; height: 280px;">
                                     <label class="lbl md:text-sm">Foto del Empleado:</label>
-                                    <img class='rounded-md md:w-full mt-4' style="width: 200px; height: 260px;" src="{{ asset('img/gestion/Empleados/' . $empleado->imagen_perfil) }}" alt="Imagen del empleado">
+                                    <img class='md:w-full mt-6' style="width: 200px; height: 260px;border-radius:120px" src="{{ asset('img/gestion/Empleados/' . $empleado->imagen_perfil) }}" alt="Imagen del empleado">
                                 </div>
                             @else
                                 <div class="w-2/5 mb-5 md:mb-0 ml-20 mt-7" style="width: 260px; height: 280px;">

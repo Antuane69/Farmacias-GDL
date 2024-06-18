@@ -593,6 +593,11 @@
                                 @endif
 
                                 <div class="border-t border-gray-100"></div>
+                                @if(Route::currentRouteName() == 'dashboard')
+                                    <button type="button" id="opcionesButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <li class="px-3 py-1 mt-1 mb-1 text-sm hover:bg-gray-100">Cambiar Foto de Perfil</li>
+                                    </button>
+                                @endif
                                 <a href="{{ route('detallesEmpleado.nav',auth()->user()->curp) }}">
                                     <li class="px-3 py-1 mt-1 mb-1 text-sm hover:bg-gray-100">Mis Datos</li>
                                 </a>

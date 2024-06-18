@@ -52,7 +52,7 @@
                                 <label for="nombre" class="mb-1 bloack uppercase text-gray-800 font-bold">
                                     * Nombre
                                 </label>
-                                @if (auth()->user()->hasRole('admin'))                                    
+                                @if (auth()->user()->hasRole('admin')||auth()->user()->hasRole('coordinador'))                                    
                                     <p>
                                         <input type="text" id="nombre_input" placeholder="Ingresa el nombre del empleado"
                                         class=' focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6'

@@ -162,7 +162,8 @@ Route::middleware(['auth.redirect'])->group( function () {
     Route::post('/nomina/numerotrabajador/crear/guardar',[NominaController::class, 'store_numtrab'])->name('nomina.numerotrabajador.store');
     Route::get('/nomina/buscar/numeroTrabajadores',[NominaController::class, 'search_numtrab'])->name('nomina.search_numtrab');
     
-    });
+    Route::get('/roles', [EmpleadosController::class,'roles'])->name('roles');
+});
 
 Route::middleware(['users.redirect'])->group( function () {
 
@@ -194,10 +195,9 @@ Route::middleware(['users.redirect'])->group( function () {
     
     Route::get('/cambiarContraseña', [ChangePasswordController::class,'cambiar_contraseña'])->name('cambiar_contraseña');
     Route::post('/guardarContraseña', [ChangePasswordController::class,'guardar_contraseña'])->name('guardar_contraseña');
+    Route::post('/foto_perfil', [DashboardController::class,'foto_perfil'])->name('foto_perfil');
     
     Route::get('/editarHistorico', [DashboardController::class,'editar_historico'])->name('editar_historico');
     Route::post('/editarHistorico/filtro', [DashboardController::class,'filtro'])->name('editar_historico.filtro');
-
-    Route::get('/roles', [EmpleadosController::class,'roles'])->name('roles');
 
 });
