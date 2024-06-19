@@ -218,10 +218,9 @@ class NominaController extends Controller
                     }
                 }
                 if(empty($array) == false){
-                    //dd($array);
                     for($i=0;$i<(count($array)*2);$i+=2){
 
-                        if(!array_key_exists($i, $array) || !array_key_exists($i+1, $array)){
+                        if(!array_key_exists($i, $array) || !array_key_exists($i+1, $array) || !array_key_exists($i+2, $array)){
                             break;
                         }
 
