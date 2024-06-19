@@ -749,7 +749,7 @@
             </tr>
             <p></p>
             <tr>
-                <td style="font-size:10;text-align:left;font-weight: bold;border-bottom:1px solid rgb(23, 23, 204);" colspan="3">Sueldo ${{$empleado->quincena}} quincenal.</td>
+                <td style="font-size:10;text-align:left;font-weight: bold;border-bottom:1px solid rgb(23, 23, 204);" colspan="3">Sueldo ${{$empleado->quincena * 2}} Mensual.</td>
             </tr>
             <p></p>
             <tr style="font-size:14px;">   
@@ -776,9 +776,9 @@
                 <td style="text-align:justify;" colspan="3">
                     <div style="font-weight: bold; display: inline;">Horario</div>
                     <p></p>
-                    * Lunes a sábados de 6:00 am a 12:00 pm. El horario se extenderá según las necesidades del restaurante, se avisará con anticipación
+                    * Lunes a sábados diurno 6:00 am a 12:00 pm. El horario se extenderá o cambiará según las necesidades del restaurante, se avisará con anticipación
                     <br>
-                    * Domingos de 12:00 am a 8:00 pm
+                    * Domingos de 2:00 pm a 8:00 pm
                     <br>
                     * Descanso los {{$empleado->descanso}}
                 </td>
@@ -786,29 +786,80 @@
             <p></p>
             <tr style="font-size:14px;">   
                 <td style="text-align:justify;" colspan="3">
-                    <div style="font-weight: bold; display: inline;">Prestaciones</div>
+                    <div style="font-weight: bold; display: inline;">Prestaciones de Ley:</div>
                     <p></p>
-                    * Vacaciones anuales (1er año 12 días)
+                    * IMMS / INFONAVIT
                     <br>
-                    * Aguinaldo
+                    * 15 días de aguinaldo x año cumplido
                     <br>
-                    * Seguro social
+                    * 12 días de vacaciones el primer año, con opción a tomar los primeros 6 días después de los 6 meses cumplidos
+                </td>
+            </tr>
+            <p></p>
+            <tr style="font-size:14px;">   
+                <td style="text-align:justify;" colspan="3">
+                    <div style="font-weight: bold; display: inline;">Prestaciones adicionales:</div>
+                    <p></p>
+                    * Servicio de comedor por $150 pesos quincenales
                     <br>
-                    * Propinas Semanales
+                    * Descuento del 20% en el restaurante
                     <br>
-                    * Comedor para empleados bajo normas establecidas por Little Tokyo
+                    * Apoyo a transporte en el turno de la noche o para gasolina en caso de contar con transporte propio
                     <br>
-                    * Talleres y capacitación para desarrollo
+                    * Si eres padre o madre no trabajas en tu día y es con goce de sueldo
                     <br>
-                    * Apoyo para transporte (Turno del cierre)
+                    * El día de tu cumpleaños es ausencia con goce de sueldo
                     <br>
-                    * Descuento del 20% en el consumo de alimentos en Little Tokyo
+                    * Propinas semanales
                 </td>
             </tr>
         </table>
     </tr>
     <tr>
         <table style="margin-left:auto;margin-top:10px; margin-right:auto;width:680px;border-collapse:collapse;">
+            <b style="font-size: 18px">Beneficios</b>
+            <p></p>
+            <tr style="font-size:14px;">   
+                <td style="text-align:justify;" colspan="3">
+                    <div style="font-weight: bold; display: inline;">COMPENSACIONES VARIABLES</div>
+                    <p></p>
+                    * Es mediante los objetivos que se establecen para el cumplimiento del sistema de trabajo
+                    <br>
+                    * Tiempo extra
+                </td>
+            </tr>
+            <p></p>
+            <tr style="font-size:14px;">   
+                <td style="text-align:justify;" colspan="3">
+                    <div style="font-weight: bold; display: inline;">BALANCE DE VIDA PERSONAL Y LABORAL</div>
+                    <p></p>
+                    1. Ofrecemos horarios que te permiten tener un equilibrio y realizar otras actividades personales o incluso tener otro trabajo
+                    <br>
+                    (Horario 12pm a 6pm / Domingos de 12 pm a 8 pm con un día de descanso)
+                    <br>
+                    2. Un ambiente laboral de respeto y servicio
+                </td>
+            </tr>
+            <p></p>
+            <tr style="font-size:14px;">   
+                <td style="text-align:justify;" colspan="3">
+                    <div style="font-weight: bold; display: inline;">DESARROLLO DE PERSONAS</div>
+                    <p></p>
+                    3. Tenemos un sistema de trabajo que permite la autogestión de tus funciones y profesionalización para la mejora continúa (Desarrollas mayor responsabilidad)
+                    <br>
+                    4. Nuestro sistema de capacitación está enfocado en que tu aprendizaje sea entendiendo los objetivos
+                    <br>
+                    5. Impartimos talleres 3 veces al año para ayudarte a desarrollar habilidades sociales y de liderazgo
+                </td>
+            </tr>
+            <p></p>
+            <tr style="font-size:14px;">   
+                <td style="text-align:justify;" colspan="3">
+                    <div style="font-weight: bold; display: inline;">RECONOCIMIENTO</div>
+                    <p></p>
+                    6. Una manera de reconocer tu trabajo es mediante la evaluación que nos permite trabajar tus fortalezas y mejorar áreas de oportunidad, para que aspires a promociones y mejores salarios.  
+                </td>
+            </tr>
             <p></p>
             <tr style="font-size:14px;">   
                 <td style="text-align:justify;" colspan="3">
