@@ -1,3 +1,21 @@
+<style>
+    .input-container {
+        position: relative;
+        display: inline-block;
+    }
+    .input-container input {
+        padding-left: 100px; /* Ajusta según sea necesario */
+        box-sizing: border-box;
+    }
+    .input-container::before {
+        content: '$';
+        position: absolute;
+        left: 26px; /* Ajusta según sea necesario */
+        top: 50%;
+        transform: translateY(-50%);
+        color: black; /* Ajusta el color según sea necesario */
+    }
+</style>
 <x-app-layout>
     @section('title', 'Little-Tokyo Administración')
     <x-slot name="header">
@@ -45,7 +63,7 @@
                     </div>
                     
                     <div class="mb-5 mx-10 px-10 py-5 text-center rounded-b-xl bg-gray-100">
-                        <div class="grid grid-cols-3 md:grid-cols-4 gap-5 md:gap-8 mx-7">                    
+                        <div class="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 mx-7">                    
                             <div class='grid grid-cols-1'>
                                 <label for="nombre" class="mb-1 bloack uppercase text-gray-800 font-bold">
                                     Nombre
@@ -92,16 +110,18 @@
                                 <label for="imss_id" class="mb-1 bloack uppercase text-gray-800 font-bold">
                                     IMSS
                                 </label>
-                                <p>
+                                <div class='input-container'>
                                     <input type="number" name="imss" id="imss_id" placeholder="Ingrese el costo del IMSS"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('imss') border-red-800 bg-red-100 @enderror'
+                                    class='focus:outline-none focus:ring-2 focus:border-transparent p-2 px-3 border-2 rounded-lg w-5/6 @error('imss') border-red-800 bg-red-100 @enderror'
                                     step="0.01" min="0" value="{{$nomina->imss}}" onchange="totalFunction()">
-                                    
-                                    @error('imss')
-                                        <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
+                                </div>
+                                
+                                @error('imss')
+                                    <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                                <p>
                                 </p>
                             </div>
                             <div class='grid grid-cols-1'>
@@ -109,9 +129,11 @@
                                     ISR
                                 </label>
                                 <p>
-                                    <input type="number" name="isr" id="isr_id" placeholder="Ingrese el costo del ISR"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('isr') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->isr}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="isr" id="isr_id" placeholder="Ingrese el costo del ISR"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('isr') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->isr}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('isr')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -125,9 +147,11 @@
                                     Prima Vacacional
                                 </label>
                                 <p>
-                                    <input type="number" name="prima_v" id="primav_id" placeholder="Ingrese la prima vacacional"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('prima_v') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->prima_v}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="prima_v" id="primav_id" placeholder="Ingrese la prima vacacional"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('prima_v') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->prima_v}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('prima_v')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -141,9 +165,11 @@
                                     Días Festivos
                                 </label>
                                 <p>
-                                    <input type="number" name="festivos" id="festivos_id" placeholder="Ingrese el pago por dias festivos"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('festivos') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->festivos}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="festivos" id="festivos_id" placeholder="Ingrese el pago por dias festivos"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('festivos') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->festivos}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('festivos')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -157,9 +183,11 @@
                                     Descuentos Diversos
                                 </label>
                                 <p>
-                                    <input type="number" name="descuentos" id="descuentos_id" placeholder="Ingrese si hay algo que descontar"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('descuentos') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->descuentos}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="descuentos" id="descuentos_id" placeholder="Ingrese si hay algo que descontar"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('descuentos') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->descuentos}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('descuentos')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -173,9 +201,11 @@
                                     Comida del Trabajador
                                 </label>
                                 <p>
-                                    <input type="number" name="comida" id="comida_id" placeholder="Ingrese el descuento por comida del trabajador"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('comida') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->comida}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="comida" id="comida_id" placeholder="Ingrese el descuento por comida del trabajador"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('comida') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->comida}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('comida')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -189,9 +219,11 @@
                                     Prima Dominical
                                 </label>
                                 <p>
-                                    <input type="number" name="prima_d" id="primad_id" placeholder="Ingrese la prima dominical"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('prima_d') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->prima_d}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="prima_d" id="primad_id" placeholder="Ingrese la prima dominical"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('prima_d') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->prima_d}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('prima_d')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -205,9 +237,11 @@
                                     Bonos Varios
                                 </label>
                                 <p>
-                                    <input type="number" name="bonos" id="bonos_id" placeholder="Ingrese los diversos bonos"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('bonos') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->bonos}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="bonos" id="bonos_id" placeholder="Ingrese los diversos bonos"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('bonos') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->bonos}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('bonos')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -221,9 +255,11 @@
                                     Dias de Host, etc...
                                 </label>
                                 <p>
-                                    <input type="number" name="host" id="host_id" placeholder="Ingrese bonos por dias de host, etc..."
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('host') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->host}}" onchange="totalFunction()">
+                                    <div class='input-container'>
+                                        <input type="number" name="host" id="host_id" placeholder="Ingrese bonos por dias de host, etc..."
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('host') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->host}}" onchange="totalFunction()">
+                                    </div>
                                     
                                     @error('host')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
@@ -237,10 +273,12 @@
                                     Apoyo en Gasolina
                                 </label>
                                 <p>
-                                    <input type="number" name="gasolina" id="gasolina_id" placeholder="Ingrese el apoyo para la gasolina"
-                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('gasolina') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->gasolina}}" onchange="totalFunction()">
-                                    
+                                    <div class='input-container'>
+                                        <input type="number" name="gasolina" id="gasolina_id" placeholder="Ingrese el apoyo para la gasolina"
+                                        class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('gasolina') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->gasolina}}" onchange="totalFunction()">
+                                    </div>
+
                                     @error('gasolina')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
                                             {{ $message }}
@@ -253,9 +291,11 @@
                                     Total a Pagar
                                 </label>
                                 <p>
-                                    <input type="number" name="total" id="total_id" placeholder="Ingrese el total a pagar"
-                                    class='focus:outline-none focus:ring-red-500 border-red-600 bg-red-100 focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 font-bold rounded-lg w-5/6 @error('total') border-red-800 bg-red-100 @enderror'
-                                    step="0.01" min="0" value="{{$nomina->total}}">
+                                    <div class='input-container'>
+                                        <input type="number" name="total" id="total_id" placeholder="Ingrese el total a pagar"
+                                        class='focus:outline-none focus:ring-red-500 border-red-600 bg-red-100 focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 font-bold rounded-lg w-5/6 @error('total') border-red-800 bg-red-100 @enderror'
+                                        step="0.01" min="0" value="{{$nomina->total}}">
+                                    </div>
                                     
                                     @error('total')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">

@@ -1,3 +1,21 @@
+<style>
+    .input-container {
+        position: relative;
+        display: inline-block;
+    }
+    .input-container input {
+        padding-left: 100px; /* Ajusta según sea necesario */
+        box-sizing: border-box;
+    }
+    .input-container::before {
+        content: '$';
+        position: absolute;
+        left: 42px; /* Ajusta según sea necesario */
+        top: 50%;
+        transform: translateY(-50%);
+        color: black; /* Ajusta el color según sea necesario */
+    }
+</style>
 <x-app-layout>
     @section('title', 'Little-Tokyo Administración')
     <x-slot name="header">
@@ -176,9 +194,11 @@
                                         * Salario Diario
                                     </label>
                                     <p>
-                                        <input type="number" name="salario_dia" id="salario_dia" placeholder="Ingresa el salario diario del empleado"
-                                        class=' focus:outline-none focus:ring-2 mb-1  focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('salario_dia') border-red-800 bg-red-100 @enderror'
-                                        value="{{$empleado->salario_dia}}">
+                                        <div class="input-container">
+                                            <input type="number" name="salario_dia" id="salario_dia" placeholder="Ingresa el salario diario del empleado"
+                                            class='focus:outline-none focus:ring-2 mb-1  focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('salario_dia') border-red-800 bg-red-100 @enderror'
+                                            value="{{$empleado->salario_dia}}">
+                                        </div>
                                         
                                         @error('salario_dia')
                                             <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
