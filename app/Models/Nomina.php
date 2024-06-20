@@ -30,6 +30,9 @@ class Nomina extends Model
         'gasolina',
         'uniformes',
         'uniformes_export',
+        'fecha_inicio',
+        'fecha_fin',
+        'isr',
     ];
 
     public function empleado(){

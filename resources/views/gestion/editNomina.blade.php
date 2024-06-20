@@ -34,7 +34,7 @@
                 </a>
             </div>
         </div>
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl md:rounded-lg">
                 <form id="formulario" action={{ route('editarNomina.store', $nomina->id) }} method="POST">
                     @csrf
@@ -45,7 +45,7 @@
                     </div>
                     
                     <div class="mb-5 mx-10 px-10 py-5 text-center rounded-b-xl bg-gray-100">
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 mx-7">                    
+                        <div class="grid grid-cols-3 md:grid-cols-4 gap-5 md:gap-8 mx-7">                    
                             <div class='grid grid-cols-1'>
                                 <label for="nombre" class="mb-1 bloack uppercase text-gray-800 font-bold">
                                     Nombre
@@ -82,6 +82,38 @@
                                     step="0.01" min="0" value="{{$nomina->minutos}}" onchange="totalFunction()">
                                     
                                     @error('minutos')
+                                        <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </p>
+                            </div>
+                            <div class='grid grid-cols-1'>
+                                <label for="imss_id" class="mb-1 bloack uppercase text-gray-800 font-bold">
+                                    IMSS
+                                </label>
+                                <p>
+                                    <input type="number" name="imss" id="imss_id" placeholder="Ingrese el costo del IMSS"
+                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('imss') border-red-800 bg-red-100 @enderror'
+                                    step="0.01" min="0" value="{{$nomina->imss}}" onchange="totalFunction()">
+                                    
+                                    @error('imss')
+                                        <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </p>
+                            </div>
+                            <div class='grid grid-cols-1'>
+                                <label for="isr_id" class="mb-1 bloack uppercase text-gray-800 font-bold">
+                                    ISR
+                                </label>
+                                <p>
+                                    <input type="number" name="isr" id="isr_id" placeholder="Ingrese el costo del ISR"
+                                    class='focus:outline-none focus:ring-2 mb-1 focus:border-transparent p-2 px-3 border-2 mt-1 rounded-lg w-5/6 @error('isr') border-red-800 bg-red-100 @enderror'
+                                    step="0.01" min="0" value="{{$nomina->isr}}" onchange="totalFunction()">
+                                    
+                                    @error('isr')
                                         <p class="bg-red-600 text-white font-medium my-2 rounded-lg text-sm p-2 text-center">
                                             {{ $message }}
                                         </p>
@@ -235,7 +267,7 @@
                             <div class='grid grid-cols-1'>
                             </div>
                             <div class='grid grid-cols-1'>
-                                <div class="flex justify-between ">
+                                <div class="flex justify-between">
                                     <button type="submit"
                                     style="height: 74%" class='mr-3 w-1/2 mt-3 bg-green-600 hover:bg-green-700 rounded-lg shadow-xl font-bold text-white px-4 py-2'
                                     >Guardar Cambios</button>
@@ -268,9 +300,11 @@
         var bonos = document.getElementById('bonos_id').value;
         var host = document.getElementById('host_id').value;
         var gasolina = document.getElementById('gasolina_id').value;
+        var imss = document.getElementById('imss_id').value;
+        var isr = document.getElementById('isr_id').value;
         var total = document.getElementById('total_id').value;
 
-        fetch(SITEURL+ `/nomina/buscar/total?horas=${horas}&minutos=${minutos}&primav=${primav}&festivos=${festivos}&descuentos=${descuentos}&comida=${comida}&primad=${primad}&bonos=${bonos}&host=${host}&gasolina=${gasolina}`, { method: 'get' })
+        fetch(SITEURL+ `/nomina/buscar/total?horas=${horas}&minutos=${minutos}&primav=${primav}&festivos=${festivos}&descuentos=${descuentos}&comida=${comida}&primad=${primad}&bonos=${bonos}&host=${host}&gasolina=${gasolina}&imss=${imss}&isr=${isr}`, { method: 'get' })
         .then(response => response.json())
         .then(data => {
                 document.getElementById('total_id').value = data.total;

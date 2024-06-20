@@ -133,7 +133,8 @@ class NominaController extends Controller
                 $sueldo_hora = 260 / 6;
             }
 
-            $nomina->imss = 59.81;
+            $nomina->isr = 75.46;
+            $nomina->imss = 88;
             $nomina->prima_v = $request->input("prima_vacacional" . $k);
             $nomina->festivos = $request->input("festivos" . $k);
             $nomina->descuentos = $request->input("descuentos" . $k);
@@ -144,7 +145,7 @@ class NominaController extends Controller
             $nomina->gasolina = $request->input("gasolina" . $k); 
 
             $nomina_f = (($nomina->minutos/60) * $sueldo_hora) + ($nomina->horas * $sueldo_hora) + $nomina->bonos + $nomina->host + $nomina->gasolina
-            + $nomina->prima_v + $nomina->festivos + $uniforme + $nomina->prima_d - ($nomina->imss + $nomina->comida + 75.46 + $nomina->descuentos);
+            + $nomina->prima_v + $nomina->festivos + $uniforme + $nomina->prima_d - ($nomina->imss + $nomina->comida + $nomina->isr + $nomina->descuentos);
             $nomina_total = round($nomina_f, 2); // Redondea a 2 decimales sin formatear
 
             // Guarda el valor redondeado directamente
@@ -174,7 +175,24 @@ class NominaController extends Controller
         // Obtener el archivo subido
         $file = $request->file('csv_file');
         $data = $this->readExcel($file,'registro de pasar la tarjeta');
+        $fechas = $this->readExcelFecha($file,'registro de pasar la tarjeta');
+        $fechaInicio = '';
+        $fechaFin = '';
 
+        // Acceder a la clave que contiene el rango de fechas
+        foreach ($fechas[0] as $key => $value) {
+            if (strpos($key, ' ~ ') !== false) {
+                $fechaRango = $key;
+
+                // Separar las fechas
+                $fechasArr = explode(' ~ ', $fechaRango);
+                $fechaaux = $fechasArr[0];
+                $fechaaux2 = $fechasArr[1];
+                $fechaInicio = Carbon::createFromFormat('Y-m-d', $fechaaux);
+                $fechaFin = Carbon::createFromFormat('Y-m-d', $fechaaux2);
+                break;
+            }
+        }
         $array = [];
         $arrHoras = [];
         $arrMinutos = [];
@@ -184,7 +202,7 @@ class NominaController extends Controller
         $cont2 = 0;
         $numero_trabajo = 0;
         $aux = false;
-
+        
         $nominas = Nomina::all();
         foreach($nominas as $nomina){
             $pivotes = PivoteNomina::where('id_nomina',$nomina->curp)->get();
@@ -322,7 +340,9 @@ class NominaController extends Controller
                         Nomina::create([
                             'curp' => $numero_trabajo,
                             'horas' => $total_Horas,
-                            'minutos' => $total_Minutos
+                            'minutos' => $total_Minutos,
+                            'fecha_inicio' => $fechaInicio,
+                            'fecha_fin' => $fechaFin,
                         ]);
                     }
                     $arrHoras = [];
@@ -341,8 +361,9 @@ class NominaController extends Controller
         $nomina = Nomina::with('empleado','pivote')->find($id);
         // Obtén la fecha actual en la zona horaria especificada
         Carbon::setLocale('es');
-        $fecha_final = Carbon::createFromFormat('Y-m-d H:i:s', $nomina->created_at);
-        $fecha_actual = $fecha_final->copy()->subDays(15);
+
+        $fecha_actual = Carbon::createFromFormat('Y-m-d', $nomina->fecha_inicio);
+        $fecha_final = Carbon::createFromFormat('Y-m-d', $nomina->fecha_fin);
 
         $fechaFormateada1 = $fecha_actual->isoFormat('D [de] MMMM [del] YYYY');
         $fechaFormateada2 = $fecha_final->isoFormat('D [de] MMMM [del] YYYY');
@@ -409,6 +430,39 @@ class NominaController extends Controller
         return $data;
     }
 
+    private function readExcelFecha($file, $sheetName)
+    {
+        $spreadsheet = IOFactory::load($file->getPathname());
+        $worksheet = $spreadsheet->getSheetByName($sheetName);
+
+        if (!$worksheet) {
+            return redirect()->back()->withErrors(['csv_file' => 'No se pudo encontrar la hoja especificada.']);
+        }
+
+        $rows = $worksheet->toArray();
+        $data = [];
+
+        // Asumimos que la fila 6 contiene los encabezados y los datos comienzan desde la fila 7
+        $header = null;
+        foreach ($rows as $index => $row) {
+            if ($index < 2) {
+                continue;
+            }
+            if ($index == 2) {
+                $header = $row;
+                continue;
+            }
+            if ($header) {
+                $data[] = array_combine($header, $row);
+            }
+            if($index > 4){
+                break;
+            }
+        }
+
+        return $data;
+    }
+
     public function edit_show($id)
     {
         $nomina = Nomina::with('empleado')->find($id);
@@ -443,10 +497,12 @@ class NominaController extends Controller
         $nomina->bonos = $request->bonos;
         $nomina->host = $request->host;
         $nomina->gasolina = $request->gasolina;
+        $nomina->imss = $request->imss;
+        $nomina->isr = $request->isr;
 
         $sueldo_hora = 260 / 6;
         $nomina_f = (($nomina->minutos/60) * $sueldo_hora) + ($nomina->horas * $sueldo_hora) + $nomina->bonos + $nomina->host + $nomina->gasolina
-        + $nomina->prima_v + $nomina->festivos + $nomina->prima_d - ($nomina->imss + $nomina->comida + 75.46 + $nomina->descuentos);
+        + $nomina->prima_v + $nomina->festivos + $nomina->prima_d - ($nomina->imss + $nomina->comida + $nomina->isr + $nomina->descuentos);
         $nomina_total = round($nomina_f, 2); // Redondea a 2 decimales sin formatear
         $nomina->total = $nomina_total;
 
@@ -486,10 +542,12 @@ class NominaController extends Controller
         $bonos = $request->bonos;
         $host = $request->host;
         $gasolina = $request->gasolina;
+        $imss = $request->imss;
+        $isr = $request->isr;
 
         $sueldo_hora = 260 / 6;
         $nomina_f = (($minutos/60) * $sueldo_hora) + ($horas * $sueldo_hora) + $bonos + $host + $gasolina
-        + $primav + $festivos + $primad - (59.81 + $comida + 75.46 + $descuentos);
+        + $primav + $festivos + $primad - ($imss + $comida + $isr + $descuentos);
         $total = round($nomina_f, 2); // Redondea a 2 decimales sin formatear
 
         return response()->json([

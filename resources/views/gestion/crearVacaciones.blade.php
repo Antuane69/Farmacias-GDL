@@ -228,26 +228,36 @@
     function validarFecha() {
         var fechaInput = new Date(document.getElementById("fechaA").value);
         var fechaRegreso = new Date(document.getElementById("fechaB").value);
+        
+        // Restablecer las horas para evitar errores de comparación
+        fechaInput.setHours(0, 0, 0, 0);
+        fechaRegreso.setHours(0, 0, 0, 0);
 
         var fechaActual = new Date();
-        var diasT = document.getElementById('dias-input').value;
+        fechaActual.setHours(0, 0, 0, 0);
+        var diasT = parseInt(document.getElementById('dias-input').value);
 
         // Obtener la fecha límite permitida
-        var fechalimite = new Date();
-        fechalimite.setDate(fechaInput.getDate() + (parseInt(diasT) + 1));
+        var fechalimite = new Date(fechaInput);
+        fechalimite.setDate(fechaInput.getDate() + diasT);
 
-        // Verificar si la fecha elegida está dentro del rango permitido
-        if (fechaRegreso > fechalimite) {
+        var diferenteMes = (fechaInput.getMonth() !== fechaRegreso.getMonth() || fechaInput.getFullYear() !== fechaRegreso.getFullYear());
+        console.log(diferenteMes);
+
+        var diasTomados = Math.ceil((fechaRegreso - fechaInput) / (1000 * 60 * 60 * 24));
+        document.getElementById('dias').value = diasTomados;
+        if(diferenteMes == false && diasTomados <= 0){
             alert("La fecha debe ser la actual o en adelante, hasta tus días de descanso restantes. Se seleccionará la fecha actual.");
             var formattedDate = fechaActual.toISOString().split('T')[0];
             document.getElementById("fechaB").value = formattedDate;
-            document.getElementById('dias').value = "";            
+            document.getElementById('dias').value = "";
+            document.getElementById('enviar-button').hidden = false;
+            document.getElementById('message-id').hidden = true;
         }else{
-            var diasTomados = Math.ceil((fechaRegreso - fechaInput) / (1000 * 60 * 60 * 24));
-            document.getElementById('dias').value = diasTomados;
             vacacionesCheck();
         }
     }
+
 
     function validarDias(){
         var fechaInput = new Date(document.getElementById("fechaA").value);
