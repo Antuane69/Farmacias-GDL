@@ -267,7 +267,7 @@ class HorariosController extends Controller
         $vacaciones = Vacaciones::where('fecha_regresoVac','>',$fechaActual)->where('fecha_inicioVac', '<=', $fechaActual)->with('empleado')->get();
         $arrayVacaciones = $vacaciones->pluck('empleado.nombre')->toArray();
 
-        if($puesto != 'administracion'){
+        if($puesto != 'Administracion'){
             if($puesto == 'COCINERO' || $puesto == 'PRODUCCION'){
                 $tipo = 'Cocina';
             }else{
@@ -1568,6 +1568,240 @@ class HorariosController extends Controller
 
             return redirect()->route('horarios.correo', ['tipo' => 'Horarios', 'id' => $id, 'aux' => 'Servicio']);
         };
+    }
+
+    public function store_vacaciones($area, Request $request){
+
+        for($k = 1;$k < 22;$k++){
+            ${'datos' . $k} = '';
+        }
+
+        if($area != 'Administracion'){
+            if($area == 'COCINERO' || $area == 'PRODUCCION'){
+                $tipo = 'Cocina';
+            }else{
+                $tipo = 'Servicio';
+            }
+        }else{
+            $tipo = 'Cocina';
+        }
+
+        if($tipo == 'Cocina'){
+            
+            for($i = 0;$i<4;$i++){
+
+                if($request->input("cocinerolunes" . $i)){
+                    $valor1 = $request->input("cocinerolunes" . $i);
+                    foreach ($valor1 as $nombre) {
+                        if (!empty($datos1)) {
+                            $datos1 .= '_';
+                        }
+                        $datos1 .= $nombre;
+                    }
+                    $datos1 .= '*';
+                }else{
+                    $datos1 .= '';
+                }
+    
+                if($request->input("cocineromartes" . $i)){
+                    $valor2 = $request->input("cocineromartes" . $i);
+                    foreach ($valor2 as $nombre) {
+                        if (!empty($datos2)) {
+                            $datos2 .= '_';
+                        }
+                        $datos2 .= $nombre;
+                    }
+                    $datos2 .= '*';
+                }else{
+                    $datos2 .= '';
+                }
+    
+                if($request->input("cocineromiercoles" . $i)){
+                    $valor3 = $request->input("cocineromiercoles" . $i);
+                    foreach ($valor3 as $nombre) {
+                        if (!empty($datos3)) {
+                            $datos3 .= '_';
+                        }
+                        $datos3 .= $nombre;
+                    }
+                    $datos3 .= '*';
+                }else{
+                    $datos3 .= '';
+                }
+    
+                if($request->input("cocinerojueves" . $i)){
+                    $valor4 = $request->input("cocinerojueves" . $i);
+                    foreach ($valor4 as $nombre) {
+                        if (!empty($datos4)) {
+                            $datos4 .= '_';
+                        }
+                        $datos4 .= $nombre;
+                    }
+                    $datos4 .= '*';
+                }else{
+                    $datos4 .= '';
+                }
+    
+                if($request->input("cocineroviernes" . $i)){
+                    $valor5 = $request->input("cocineroviernes" . $i);
+                    foreach ($valor5 as $nombre) {
+                        if (!empty($datos5)) {
+                            $datos5 .= '_';
+                        }
+                        $datos5 .= $nombre;
+                    }
+                    $datos5 .= '*';
+                }else{
+                    $datos5 .= '';
+                }
+
+                if($request->input("cocinerosabado" . $i)){
+                    $valor6 = $request->input("cocinerosabado" . $i);
+                    foreach ($valor6 as $nombre) {
+                        if (!empty($datos6)) {
+                            $datos6 .= '_';
+                        }
+                        $datos6 .= $nombre;
+                    }
+                    $datos6 .= '*';
+                }else{
+                    $datos6 .= '';
+                }
+    
+                if($request->input("cocinerodomingo" . $i)){
+                    $valor7 = $request->input("cocinerodomingo" . $i);
+                    foreach ($valor7 as $nombre) {
+                        if (!empty($datos7)) {
+                            $datos7 .= '_';
+                        }
+                        $datos7 .= $nombre;
+                    }
+                    $datos7 .= '*';
+                }else{
+                    $datos7 .= '';
+                }
+                    
+            };
+
+            Horarios::create([
+                'cocinero_lunes' => $datos1,
+                'cocinero_martes' => $datos2,
+                'cocinero_miercoles' => $datos3,
+                'cocinero_jueves' => $datos4,
+                'cocinero_viernes' => $datos5,
+                'cocinero_sabado' => $datos6,
+                'cocinero_domingo' => $datos7
+            ]);
+
+            return response()->json([
+                'success' => false,
+            ]);
+            
+        }else{
+
+            for($i = 0;$i<4;$i++){
+                $valor1 = $request->input("serviciolunes" . $i);
+                foreach ($valor1 as $nombre) {
+                    if (!empty($datos8)) {
+                        $datos8 .= '_';
+                    }
+                    $datos8 .= $nombre;
+                }
+                $datos8 .= '*';
+    
+                $valor2 = $request->input("serviciomartes" . $i);
+                foreach ($valor2 as $nombre) {
+                    if (!empty($datos9)) {
+                        $datos9 .= '_';
+                    }
+                    $datos9 .= $nombre;
+                }
+                $datos9 .= '*';
+    
+                $valor3 = $request->input("serviciomiercoles" . $i);
+                foreach ($valor3 as $nombre) {
+                    if (!empty($datos10)) {
+                        $datos10 .= '_';
+                    }
+                    $datos10 .= $nombre;
+                }
+                $datos10 .= '*';
+    
+                $valor4 = $request->input("serviciojueves" . $i);
+                foreach ($valor4 as $nombre) {
+                    if (!empty($datos11)) {
+                        $datos11 .= '_';
+                    }
+                    $datos11 .= $nombre;
+                }
+                $datos11 .= '*';
+    
+                if($request->input("servicioviernes" . $i)){
+                    $valor5 = $request->input("servicioviernes" . $i);
+                    foreach ($valor5 as $nombre) {
+                        if (!empty($datos12)) {
+                            $datos12 .= '_';
+                        }
+                        $datos12 .= $nombre;
+                    }
+                    $datos12 .= '*';
+                }else{
+                    $datos12 .= ",*";
+                }
+
+                if($request->input("serviciosabado" . $i)){
+                    $valor6 = $request->input("serviciosabado" . $i);
+                    foreach ($valor6 as $nombre) {
+                        if (!empty($datos13)) {
+                            $datos13 .= '_';
+                        }
+                        $datos13 .= $nombre;
+                    }
+                    $datos13 .= '*';
+                }else{
+                    $datos13 .= ",*";
+                }
+    
+                $valor7 = $request->input("serviciodomingo" . $i);
+                foreach ($valor7 as $nombre) {
+                    if (!empty($datos14)) {
+                        $datos14 .= '_';
+                    }
+                    $datos14 .= $nombre;
+                }
+                $datos14 .= '*';
+            }    
+
+            $datos15 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos16 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos17 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos18 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos19 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos20 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+            $datos21 = 'HANNAH YAEL MALAGON TONCHE*Luis Javier Vera Hernandez*,*,*';
+
+            HorariosServicio::create([
+                'servicio_lunes' => $datos8,
+                'servicio_martes' => $datos9,
+                'servicio_miercoles' => $datos10,
+                'servicio_jueves' => $datos11,
+                'servicio_viernes' => $datos12,
+                'servicio_sabado' => $datos13,
+                'servicio_domingo' => $datos14,
+                'barra_lunes' => $datos15,
+                'barra_martes' => $datos16,
+                'barra_miercoles' => $datos17,
+                'barra_jueves' => $datos18,
+                'barra_viernes' => $datos19,
+                'barra_sabado' => $datos20,
+                'barra_domingo' => $datos21,
+            ]);
+
+            return response()->json([
+                'success' => false,
+            ]);
+        };
+
     }
 
     public function filtro(Request $request)

@@ -133,35 +133,6 @@
                 </div>
                 </div>
             </section><!-- End Featured Services Section -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="width: 300px; height: 500px;">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Perfil</h5>
-                            <button type="button" class="rounded bg-yellow-500 hover:bg-yellow-700 text-white font-bold px-1 p-1" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="{{ route('foto_perfil') }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="text-center">
-                                    <div class="mb-4" onclick="openInput()" id="imageContainer1">
-                                        <label for="imagen_perfil" class="mb-2 uppercase text-gray-800 font-bold text-center">
-                                            Imagen del Empleado
-                                        </label>
-                                        <div class="mx-auto border-yellow-200 p-2 w-full rounded-lg border-2" style="width: 200px; height: 220px;">
-                                            <img id="imgPreview1" src="{{ asset('img/gestion/Empleados/noImage.jpg') }}" style="width: 180px; height: 200px;">
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <input type="file" name="imagen_perfil" id="inputContainer1" class="bg-white border-black p-2 rounded-lg border-2 w-full" accept=".jpg, .jpeg, .png, .svg" onchange="previewImage(event, '#imgPreview1')" style="max-width: 100%; border-color: #858585; background-color: #FFFFFF;">
-                                    </div>
-                                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 font-bold py-2 px-4 rounded-md">Enviar PDF</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> 
             <!-- ======= Contact Section ======= -->
             <div id="preloader"></div>
             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

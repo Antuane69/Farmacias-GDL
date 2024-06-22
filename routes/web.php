@@ -135,10 +135,6 @@ Route::middleware(['auth.redirect'])->group( function () {
     Route::post('/gestion/generarContrato/pdf/{id}', [EmpleadosController::class,'datos_pdf'])->name('empleados.datospdf');//*
     Route::post('/gestion/subirContrato/pdf/{id}', [EmpleadosController::class,'subir_pdf'])->name('empleados.subirpdf');//*
 
-    // Route::get('/gestion/verDocumentacion/pdf/{tipo}/{id}', [EmpleadosController::class,'ver_pdf'])->name('empleados.verpdf');//*
-    // Route::get('/gestion/datosContrato/pdf/{id}', [EmpleadosController::class,'crear_datosPDF'])->name('empleados.crear_datospdf');//*
-    // Route::post('/gestion/subirContrato/pdf/{id}', [EmpleadosController::class,'subir_pdf'])->name('empleados.subirpdf');//*
-
     // correos
     Route::get('/correos/Vacaciones/{tipo}/{id}/{aux}',[VacacionesController::class, 'correo'])->name('vacaciones.correo');
     Route::get('/correos/Permisos/{tipo}/{id}/{aux}',[PermisosController::class, 'correo'])->name('permisos.correo');
@@ -192,7 +188,10 @@ Route::middleware(['users.redirect'])->group( function () {
     Route::get('/horario/crearTemplate/{tipo}', [HorariosController::class,'createTemplate'])->name('template.crear');
     Route::get('/horario/llenarTemplate/{tipo}', [HorariosController::class,'storeTemplate'])->name('template.store');
     Route::post('/horario/filtroHorarios', [HorariosController::class,'filtro'])->name('horario.filtro');
+
+    Route::post('/horario/vacacionStore/{area}', [HorariosController::class,'store_vacaciones'])->name('horario.vacacionStore');
     
+
     Route::get('/cambiarContraseña', [ChangePasswordController::class,'cambiar_contraseña'])->name('cambiar_contraseña');
     Route::post('/guardarContraseña', [ChangePasswordController::class,'guardar_contraseña'])->name('guardar_contraseña');
     Route::post('/foto_perfil', [DashboardController::class,'foto_perfil'])->name('foto_perfil');

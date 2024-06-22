@@ -89,7 +89,7 @@
             <tr style="text-align:center;font-size:13px;border: 1px solid #262626;">   
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">{{$nomina->horas}}</td>
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">{{$nomina->minutos}}</td>
-                <td style="font: bold;text-align:center;border: 1px solid #262626;">15</td>
+                <td style="font: bold;text-align:center;border: 1px solid #262626;">{{$nomina->dias}}</td>
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">${{$salario_h}}</td>
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">${{$salario_d}}</td>
                 <td style="font: bold;text-align:center;border: 1px solid #262626;">${{$nomina->bonos}}</td>

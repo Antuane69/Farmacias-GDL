@@ -33,6 +33,7 @@ class Nomina extends Model
         'fecha_inicio',
         'fecha_fin',
         'isr',
+        'dias',
     ];
 
     public function empleado(){

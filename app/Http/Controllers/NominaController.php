@@ -337,12 +337,21 @@ class NominaController extends Controller
                     $total_Minutos = array_sum($arrMinutos);
 
                     if($total_Horas != 0){
+                        $resultado = intdiv($total_Minutos, 60);
+                        $resHoras = $total_Horas + $resultado;
+                        $resultado_horas = intdiv($resHoras, 36);
+                        $horas_extra = 6 * $resultado_horas;
+                        $total_Horas = $total_Horas + $horas_extra;
+
+                        $dias_laborados = intdiv($resHoras, 6);
+
                         Nomina::create([
                             'curp' => $numero_trabajo,
                             'horas' => $total_Horas,
                             'minutos' => $total_Minutos,
                             'fecha_inicio' => $fechaInicio,
                             'fecha_fin' => $fechaFin,
+                            'dias' => $dias_laborados,
                         ]);
                     }
                     $arrHoras = [];
