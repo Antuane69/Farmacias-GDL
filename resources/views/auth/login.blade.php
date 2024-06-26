@@ -1,8 +1,8 @@
-<title>Little Tokyo - Administración</title>
+<title>Programa de Tickets</title>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
         </x-slot> 
 
         <x-jet-validation-errors class="mb-4" />
@@ -17,8 +17,8 @@
             @csrf
 
             <div>
-                <x-jet-label for="curp" value="{{ __('CURP') }}" />
-                <x-jet-input id="curp" class="block mt-1 w-full" type="text" name="curp" :value="old('curp')" required autofocus />
+                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
@@ -39,11 +39,19 @@
                         {{ __('¿Olvidaste tu contraseña?') }}
                     </a>
                 @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Entrar') }}
-                </x-jet-button>
+                
+                <div class="inline-flex justify-between mx-4 content-center">
+                    <x-jet-button class="ml-4">
+                        {{ __('Entrar') }}
+                    </x-jet-button>
+                </div>
             </div>
+        </form>
+        <form action="{{ route('register') }}">
+            @csrf
+            <x-jet-button class="ml-4 bg-green-700 hover:bg-green-800">
+                {{ __('Registrarme') }}
+            </x-jet-button>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>

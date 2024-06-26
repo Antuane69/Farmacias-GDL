@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmpleadosTable extends Migration
+class CreateSubtaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateEmpleadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('sub_task', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password')->default(bcrypt('password'));
-            $table->string('role');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->string('title');
+            $table->boolean('isCompleted');
+            $table->integer('task_id');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateEmpleadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('sub_task');
     }
 }

@@ -83,19 +83,19 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
-                    <div class="shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}">
-                            <img src="{{asset('assets/tokyoLogo.png')}}" class="block h-16 w-auto" alt="">
-                        </a>
-                    </div>
+                    <a href="{{ route('dashboard') }}">
+                        <div class="shrink-0 flex items-center font-bold text-xl" style="margin-top:18px">
+                            <p class="text-black">TASKS <span class="text-blue-800">APP</span></p>
+                        </div>
+                    </a>
                     <!-- Navigation Links -->
                     <div class="MENU">
                         <div class="hidden space-x-8 sm:flex sm:items-center sm:ml-1 justify-between h-16">
-                            @if (auth()->user()->hasRole('admin'))
+                            @if (auth()->user()->role == 'Administrator')
                             <div class="group inline-block items-center ml-3" align="left" width="30">
                                 <button
                                     class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Empleados</span>
+                                    <span class="pr-1 font-semibold flex-1">Tasks</span>
                                     <span>
                                         <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
                                     transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -107,47 +107,10 @@
                                 </button>
                                 <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute                                
                                     transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('empleadosInicio.show') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Inicio</li>
-                                    </a>
                                     <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                         <button
                                             class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Recursos Humanos</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32
-                                        ">
-                                            <a href="{{ route('crearEmpleado.create') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Dar de Alta</li>
-                                            </a>
-                                            <a href="{{ route('mostrarEmpleado.show') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Ver Empleados</li>
-                                            </a>
-                                            <p>
-                                            </p>
-                                            <a href="{{ route('crearBajas.extraVista') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Dar de Baja</li>
-                                            </a>
-                                            <a href="{{ route('mostrarBajas.show') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Ver Bajas</li>
-                                            </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Vacaciones</span>
+                                            <span class="pr-1 flex-1">Tasks</span>
                                             <span class="mr-auto">
                                                 <svg class="fill-current h-4 w-4
                                         transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -161,18 +124,18 @@
                                         <ul class="bg-white border rounded-sm absolute top-0 right-0
                                         transition duration-150 ease-in-out origin-top-left
                                         min-w-32">
-                                        <a href="{{ route('crearVacacion.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Vacaciones</li>
+                                        <a href="{{ route('create.task') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">Create</li>
                                         </a>
-                                        <a href="{{ route('mostrarVacaciones.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Vacaciones Registradas</li>
+                                        <a href="{{ route('show.task') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">View All</li>
                                         </a>
                                         </ul>
                                     </li>
                                     <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                         <button
                                             class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Faltas al Reglamento</span>
+                                            <span class="pr-1 flex-1">SubTaks</span>
                                             <span class="mr-auto">
                                                 <svg class="fill-current h-4 w-4
                                         transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -186,72 +149,20 @@
                                         <ul class="bg-white border rounded-sm absolute top-0 right-0
                                         transition duration-150 ease-in-out origin-top-left
                                         min-w-32">
-                                        <a href="{{ route('crearFaltas.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Faltas al Reglamento</li>
+                                        <a href="{{ route('create.subtask') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">Create</li>
                                         </a>
-                                        <a href="{{ route('mostrarFaltas.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Registro de Faltas al Reglamento</li>
-                                        </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Incapacidades</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32">
-                                        <a href="{{ route('crearIncapacidad.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Incapacidad</li>
-                                        </a>
-                                        <a href="{{ route('mostrarIncapacidades.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Registros de Incapacidad</li>
-                                        </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Permisos</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32">
-                                        <a href="{{ route('crearPermisos.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Permisos</li>
-                                        </a>
-                                        <a href="{{ route('mostrarPermisos.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Registros de Permisos</li>
+                                        <a href="{{ route('show.subtask') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">View All</li>
                                         </a>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-
-                            @elseif (auth()->user()->hasRole('coordinador'))
                             <div class="group inline-block items-center ml-3" align="left" width="30">
                                 <button
                                     class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Empleados</span>
+                                    <span class="pr-1 font-semibold flex-1">Graphs</span>
                                     <span>
                                         <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
                                     transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -263,68 +174,16 @@
                                 </button>
                                 <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute                                
                                     transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('empleadosInicio.show') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Inicio</li>
+                                    <a href="">
+                                        <li class="px-3 py-1 hover:bg-gray-100">View Statistics</li>
                                     </a>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Vacaciones</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32">
-                                        <a href="{{ route('crearVacacion.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Vacaciones</li>
-                                        </a>
-                                        <a href="{{ route('mostrarVacaciones.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Vacaciones Registradas</li>
-                                        </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Permisos</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32">
-                                        <a href="{{ route('crearPermisos.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Permisos</li>
-                                        </a>
-                                        <a href="{{ route('mostrarPermisos.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Registros de Permisos</li>
-                                        </a>
-                                        </ul>
-                                    </li>
                                 </ul>
                             </div>
-                            @endif
-
-                            @if (auth()->user()->hasRole('admin'))
+                            @else
                             <div class="group inline-block items-center ml-3" align="left" width="30">
                                 <button
                                     class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Almacén</span>
+                                    <span class="pr-1 font-semibold flex-1">Tasks</span>
                                     <span>
                                         <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
                                     transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -334,48 +193,12 @@
                                         </svg>
                                     </span>
                                 </button>
-                                <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                            transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('almacenInicio.show') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Inicio</li>
-                                    </a>
+                                <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute                                
+                                    transition duration-150 ease-in-out origin-top min-w-32">
                                     <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                         <button
                                             class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Uniformes</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32
-                                        ">
-                                            <a href="{{ route('crearStockUniformes.create') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Registrar Almacén de Uniformes</li>
-                                            </a>
-                                            <a href="{{ route('mostrarStock.show') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Ver Almacén de Uniformes</li>
-                                            </a>
-                                            <p></p>
-                                            <a href="{{ route('crearUniformes.create') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Asignar Uniformes</li>
-                                            </a>                                        
-                                            <a href="{{ route('mostrarUniformes.show') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Ver Registros de Uniformes</li>
-                                            </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Herramientas</span>
+                                            <span class="pr-1 flex-1">Tasks</span>
                                             <span class="mr-auto">
                                                 <svg class="fill-current h-4 w-4
                                         transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -389,62 +212,15 @@
                                         <ul class="bg-white border rounded-sm absolute top-0 right-0
                                         transition duration-150 ease-in-out origin-top-left
                                         min-w-32">
-                                        <a href="{{ route('crearHerramientas.create') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Registrar Herramienta</li>
+                                        <a href="{{ route('show.task') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">View All</li>
                                         </a>
-                                        <a href="{{ route('mostrarHerramientas.show') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Registros de Herramientas</li>
-                                        </a>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="group inline-block items-center ml-3" align="left" width="30">
-                                <button
-                                    class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Formatos PDF</span>
-                                    <span>
-                                        <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                    transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                        </svg>
-                                    </span>
-                                </button>
-                                <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                            transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('pdfInicio.show') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Inicio</li>
-                                    </a>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Uniformes</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32
-                                        ">
-                                            <a href="{{ route('uniformes.mostrarpdf') }}">
-                                                <li class="px-3 py-1 hover:bg-gray-100">Ver Recibos de Uniformes Firmados</li>
-                                            </a>
                                         </ul>
                                     </li>
                                     <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                         <button
                                             class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Herramientas</span>
+                                            <span class="pr-1 flex-1">SubTaks</span>
                                             <span class="mr-auto">
                                                 <svg class="fill-current h-4 w-4
                                         transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
@@ -458,103 +234,14 @@
                                         <ul class="bg-white border rounded-sm absolute top-0 right-0
                                         transition duration-150 ease-in-out origin-top-left
                                         min-w-32">
-                                        {{-- <a>
-                                            <li class="px-3 py-1 hover:bg-gray-100">Elaborar Recibo de Herramienta</li>
-                                        </a> --}}
-                                        <a href="{{ route('herramientas.mostrarpdf') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Recibos de Herramientas Firmados</li>
-                                        </a>
-                                        </ul>
-                                    </li>
-                                    <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                        <button
-                                            class="w-full text-left flex items-center outline-none focus:outline-none text-black">
-                                            <span class="pr-1 flex-1">Actas Administrativas</span>
-                                            <span class="mr-auto">
-                                                <svg class="fill-current h-4 w-4
-                                        transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                </svg>
-                                            </span>
-                                        </button>
-
-                                        <ul class="bg-white border rounded-sm absolute top-0 right-0
-                                        transition duration-150 ease-in-out origin-top-left
-                                        min-w-32">
-                                        {{-- <a>
-                                            <li class="px-3 py-1 hover:bg-gray-100">Elaborar Acta Administrativa</li>
-                                        </a> --}}
-                                        <a href="{{ route('faltas.mostrarpdf') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Ver Actas Administrativas Firmadas</li>
+                                        <a href="{{ route('show.subtask') }}">
+                                            <li class="px-3 py-1 hover:bg-gray-100">View All</li>
                                         </a>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-
-                            <div class="group inline-block items-center ml-3" align="left" width="30">
-                                <button
-                                    class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Nóminas</span>
-                                    <span>
-                                        <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                    transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                        </svg>
-                                    </span>
-                                </button>
-                                <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('nomina.csv') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Subir Excel</li>
-                                    </a>
-                                    <a href="{{ route('nomina.historico') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Ver Registro de Nómina Actual</li>
-                                    </a>
-                                    <a href="{{ route('nomina.numerotrabajador') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Ver Relación Número de Trabajador</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            @endif
-                            @if (auth()->user()->hasRole('coordinador') || auth()->user()->hasRole('admin'))
-                            <div class="group inline-block items-center ml-3" align="left" width="30">
-                                <button
-                                    class="outline-none focus:outline-none px-1 py-1 bg-white rounded-sm flex items-center min-w-32">
-                                    <span class="pr-1 font-semibold flex-1">Horarios</span>
-                                    <span>
-                                        <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                    transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                        </svg>
-                                    </span>
-                                </button>
-                                <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                            transition duration-150 ease-in-out origin-top min-w-32">
-                                    <a href="{{ route('template.crear','Cocina') }}">
-                                        @if (auth()->user()->hasRole('admin'))
-                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario de Cocina</li>
-                                        @else
-                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario</li>
-                                        @endif
-                                    </a>
-                                    @if (auth()->user()->hasRole('admin'))                                        
-                                        <a href="{{ route('template.crear','Servicio') }}">
-                                            <li class="px-3 py-1 hover:bg-gray-100">Crear Horario de Servicio</li>
-                                        </a>
-                                    @endif
-                                    <a href="{{ route('horario.mostrar') }}">
-                                        <li class="px-3 py-1 hover:bg-gray-100">Ver Registro de Horario</li>
-                                    </a>
-                                </ul>
-                            </div>
-                            @endif                     
+                            @endif               
                         </div>
                     </div>
                 </div>    
@@ -565,14 +252,10 @@
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button class="inline-flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-150 transition">
-                                        @if (auth()->user()->imagen_perfil != '')
-                                            <img class="h-8 w-8 rounded-full object-cover mr-2"
-                                                src="{{ asset('img/gestion/Empleados/' . auth()->user()->imagen_perfil) }}" alt="Imagen del empleado"/>
-                                        @else
-                                            <img class="h-8 w-8 rounded-full object-cover mr-2"
-                                                src="{{ asset('assets/perfil.jpg') }}" alt="Imagen del empleado"/>
-                                        @endif
-                                        <span class="mr-2">{{ Auth::user()->nombre }}</span>
+                                        <img class="h-8 w-8 rounded-full object-cover mr-2"
+                                            src="{{ asset('assets/perfil.jpg') }}" alt="Imagen del empleado"/>
+
+                                        <span class="mr-2">{{ Auth::user()->username }}</span>
                                         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -594,26 +277,6 @@
                                     </x-jet-dropdown-link>
                                 @endif
 
-                                <div class="border-t border-gray-100"></div>
-                                @if(Route::currentRouteName() == 'dashboard')
-                                    <button type="button" id="opcionesButton" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <li class="px-3 py-1 mt-1 mb-1 text-sm hover:bg-gray-100">Cambiar Foto de Perfil</li>
-                                    </button>
-                                @endif
-                                <a href="{{ route('detallesEmpleado.nav',auth()->user()->curp) }}">
-                                    <li class="px-3 py-1 mt-1 mb-1 text-sm hover:bg-gray-100">Mis Datos</li>
-                                </a>
-                                <a href="{{ route('cambiar_contraseña') }}">
-                                    <li class="px-3 py-1 mb-1 text-sm hover:bg-gray-100">Cambiar Contraseña</li>
-                                </a>
-                                @if (auth()->user()->hasRole('admin'))                                    
-                                    <a href="{{ route('editar_historico') }}">
-                                        <li class="px-3 py-1 mb-1 text-sm hover:bg-gray-100">Historial de Ediciones</li>
-                                    </a>
-                                    <a href="{{ route('soporte.mostrar') }}">
-                                        <li class="px-3 py-1 mb-1 text-sm hover:bg-gray-100">Soporte</li>
-                                    </a>
-                                @endif
                                 <div class="border-t border-gray-100"></div>
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">

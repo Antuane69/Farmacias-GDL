@@ -20,6 +20,8 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SoporteController;
 use App\Http\Controllers\StockUniformesController;
+use App\Http\Controllers\SubTaskController;
+use App\Http\Controllers\TaskController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -34,6 +36,24 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::get('/dashboard',[DashboardController::class, 'inicio'])->name('dashboard');
 Route::get('/',[DashboardController::class, 'inicio'])->name('login_2');
+Route::get('/register',[DashboardController::class, 'register'])->name('register');
+Route::post('/register/guardar',[DashboardController::class, 'register_save'])->name('register.guardar');
+
+Route::get('/task/create',[TaskController::class, 'create'])->name('create.task');
+Route::post('/task/save/{id?}',[TaskController::class, 'save'])->name('save.task');
+Route::get('/task/show',[TaskController::class, 'show'])->name('show.task');
+Route::get('/task/edit/{id}',[TaskController::class, 'edit'])->name('edit.task');
+Route::delete('/task/delete',[TaskController::class, 'delete'])->name('delete.task');
+Route::post('/task/complete/{id}',[TaskController::class, 'update'])->name('complete.task');
+
+Route::get('/subtask/create',[SubTaskController::class, 'create'])->name('create.subtask');
+Route::post('/subtask/save/{id?}',[SubTaskController::class, 'save'])->name('save.subtask');
+Route::get('/subtask/show',[SubTaskController::class, 'show'])->name('show.subtask');
+Route::get('/subtask/edit/{id}',[SubTaskController::class, 'edit'])->name('edit.subtask');
+Route::delete('/subtask/delete',[SubTaskController::class, 'delete'])->name('delete.subtask');
+Route::post('/subtask/complete/{id}',[SubTaskController::class, 'update'])->name('complete.subtask');
+
+
 
 Route::middleware(['auth.redirect'])->group( function () {
 
