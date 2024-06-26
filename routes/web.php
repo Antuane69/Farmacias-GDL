@@ -18,6 +18,7 @@ use App\Http\Controllers\HerramientasController;
 use App\Http\Controllers\IncapacidadesController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SoporteController;
 use App\Http\Controllers\StockUniformesController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -158,6 +159,15 @@ Route::middleware(['auth.redirect'])->group( function () {
     Route::post('/nomina/numerotrabajador/crear/guardar',[NominaController::class, 'store_numtrab'])->name('nomina.numerotrabajador.store');
     Route::get('/nomina/buscar/numeroTrabajadores',[NominaController::class, 'search_numtrab'])->name('nomina.search_numtrab');
     
+    Route::get('/soporte/crear', [SoporteController::class,'create'])->name('soporte.crear');
+    Route::post('/soporte/guardar/{id?}', [SoporteController::class,'store'])->name('soporte.guardar');
+    Route::get('/soporte/mostrar', [SoporteController::class,'show'])->name('soporte.mostrar');
+    Route::get('/soporte/descargar/{id}', [SoporteController::class,'download'])->name('soporte.descargar');
+    
+    Route::get('/soporte/editar/{id}', [SoporteController::class,'edit'])->name('soporte.editar');
+    //Route::post('/soporte/editar/guardar', [SoporteController::class,'edit_store'])->name('soporte.editarGuardar');
+    Route::delete('/soporte/eliminar/{id}', [SoporteController::class,'delete'])->name('soporte.eliminar');
+
     Route::get('/roles', [EmpleadosController::class,'roles'])->name('roles');
 });
 

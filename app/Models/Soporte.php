@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Soporte extends Model
 {
     use HasFactory;
+
+    protected $table = "soporte";
     protected $fillable =  [
-        'fecha',
-        'rpe',
+        'fecha_entrega',
         'titulo',
         'descripcion',
+        'tipo',
+        'urgencia',
+        'evidencia',
+        'estatus',
     ];
 
 }

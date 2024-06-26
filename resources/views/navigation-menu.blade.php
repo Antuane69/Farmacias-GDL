@@ -610,6 +610,9 @@
                                     <a href="{{ route('editar_historico') }}">
                                         <li class="px-3 py-1 mb-1 text-sm hover:bg-gray-100">Historial de Ediciones</li>
                                     </a>
+                                    <a href="{{ route('soporte.mostrar') }}">
+                                        <li class="px-3 py-1 mb-1 text-sm hover:bg-gray-100">Soporte</li>
+                                    </a>
                                 @endif
                                 <div class="border-t border-gray-100"></div>
                                 <!-- Authentication -->
